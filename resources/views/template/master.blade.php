@@ -4,7 +4,7 @@
     @include('template.head')
     @yield('style')
   </head>
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
         @include('template.sidebar')

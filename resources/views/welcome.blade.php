@@ -3,213 +3,205 @@
 @section('home_active', 'active')
 
 @section('content')
-<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="container-xxl flex-grow-1 container-p-y">
 
-    <div class="row">
+        <h4 class="fw-bold mb-4">
+            Home
+        </h4>
 
-        {{-- HERO --}}
-        <div class="col-lg-8 mb-4">
-            <div class="card h-100">
-                <div class="d-flex align-items-center row h-100">
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h4 class="card-title text-primary mb-3">Hallo {{ auth()->user()->name }} 🎉</h4>
-                            <p class="mb-4 fs-5" id="hero-text">Loading...</p>
+        {{-- ===================== --}}
+        {{-- SUMMARY --}}
+        {{-- ===================== --}}
+        <div class="row mb-4">
 
-                            {{-- <a href="{{ route('order.index') }}" class="btn btn-primary">
-                                <i class="bx bx-cart"></i> Lihat Order
-                            </a> --}}
-                        </div>
-                    </div>
-                    <div class="col-md-4 text-center">
-                        <img src="/fms/public/sneat/assets/img/illustrations/man-with-laptop-light.png" height="150"/>
+            <div class="col-md-3 mb-2">
+                <div class="card">
+                    <div class="card-body">
+                        <span class="text-muted">Total Warga</span>
+                        <h4 id="total_resident">0</h4>
                     </div>
                 </div>
             </div>
-        </div>
 
-        {{-- KPI RIGHT --}}
-        <div class="col-lg-4">
-            <div class="row">
-
-                <div class="col-12 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <span class="text-muted">Omzet Bulan Ini</span>
-                            <h3 class="mt-2 mb-1" id="omzet">Rp 0</h3>
-                            <small class="text-success" id="growth">-</small>
-                        </div>
+            <div class="col-md-3 mb-2">
+                <div class="card">
+                    <div class="card-body">
+                        <span class="text-muted">Pembayaran Bulan Ini</span>
+                        <h4 id="payment_this_month">Rp 0</h4>
                     </div>
-                </div>
-
-                <div class="col-12 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <span class="text-muted">Order Belum Lunas</span>
-                            <h3 class="mt-2 mb-1" id="total_order">0</h3>
-                            <small class="text-muted" id="today_order">-</small>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        {{-- ROW 2 --}}
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <span class="text-muted">Piutang</span>
-                    <h4 class="mt-2" id="piutang">Rp 0</h4>
-                    <small class="text-danger" id="piutang_count"></small>
                 </div>
             </div>
-        </div>
 
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <span class="text-muted">Cash Masuk</span>
-                    <h4 class="mt-2" id="payment">Rp 0</h4>
-                    <small class="text-success" id="payment_growth"></small>
+            <div class="col-md-3 mb-2">
+                <div class="card">
+                    <div class="card-body">
+                        <span class="text-muted">Sudah Bayar</span>
+                        <h4 id="paid_resident">0</h4>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <span class="text-muted">Order Belum Diproses</span>
-                    <h4 class="mt-2" id="top_product">0</h4>
-                    <small class="text-muted" id="top_product_qty"></small>
+            <div class="col-md-3 mb-2">
+                <div class="card border-danger">
+                    <div class="card-body">
+                        <span class="text-muted">Belum Bayar</span>
+                        <h4 id="unpaid_resident" class="text-danger">0</h4>
+                    </div>
                 </div>
             </div>
+
         </div>
 
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <span class="text-muted">Sedang Dikerjakan</span>
-                    <h4 class="mt-2" id="reminder">0</h4>
-                    <small class="text-primary">Aktivitas produksi</small>
+        {{-- ===================== --}}
+        {{-- MATRIX TABLE --}}
+        {{-- ===================== --}}
+        <div class="card">
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="mb-0">
+                        Status Pembayaran Tahun <span id="year">-</span>
+                    </h5>
                 </div>
-            </div>
-        </div>
 
-        {{-- ROW 3 (INSIGHT TAMBAHAN BIAR PADAT) --}}
-        <div class="col-lg-6 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="mb-3">Ringkasan Keuangan</h5>
-
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Sales Bulan Ini</span>
-                        <strong id="sales_month">Rp 0</strong>
-                    </div>
-
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Cash Masuk</span>
-                        <strong id="cash_month">Rp 0</strong>
-                    </div>
-
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Profit</span>
-                        <strong id="profit_month">Rp 0</strong>
-                    </div>
-
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm text-center align-middle" id="payment-table">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="text-start">Warga</th>
+                                <th>Blok</th>
+                                <th>Jan</th>
+                                <th>Feb</th>
+                                <th>Mar</th>
+                                <th>Apr</th>
+                                <th>Mei</th>
+                                <th>Jun</th>
+                                <th>Jul</th>
+                                <th>Agu</th>
+                                <th>Sep</th>
+                                <th>Okt</th>
+                                <th>Nov</th>
+                                <th>Des</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="14" class="text-center text-muted">
+                                    Loading data...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-            </div>
-        </div>
 
-        <div class="col-lg-6 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="mb-3">Status Produksi</h5>
-
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Order Diproses</span>
-                        <strong id="in_production">0</strong>
-                    </div>
-
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Belum Diproses</span>
-                        <strong id="pending_order">0</strong>
-                    </div>
-
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Conversion Rate</span>
-                        <strong id="conversion_rate">0%</strong>
-                    </div>
-
-                </div>
             </div>
         </div>
 
     </div>
-
-</div>
 @endsection
 
 
 @section('script')
-<script>
-$(function () {
+    <script>
+        $(function() {
 
-    function rupiah(val) {
-        return new Intl.NumberFormat('id-ID').format(val || 0);
-    }
+            function rupiah(val) {
+                return new Intl.NumberFormat('id-ID').format(val || 0);
+            }
 
-    $.get("{{ route('home_api') }}")
-    .done(function(res) {
+            function renderTable(data) {
 
-        let data = res || {};
+                if (!data.length) {
+                    return `<tr>
+                        <td colspan="14" class="text-center text-muted">
+                            Tidak ada data
+                        </td>
+                    </tr>`;
+                }
 
-        // HERO
-        $('#hero-text').html(`
-            Hari ini ada <b>${data.today?.order ?? 0}</b> order
-            dengan omzet <b>Rp ${rupiah(data.today?.sales)}</b>
+                let rows = '';
+
+                data.forEach(r => {
+
+                    let cols = `
+                <td class="text-start">${r.name}</td>
+                <td>${r.address ?? '-'}</td>
+            `;
+
+                    r.months.forEach((m, index) => {
+
+                        if (m === 1) {
+                            cols += `
+                        <td class="bg-success-subtle text-success fw-bold"
+                            title="Sudah bayar bulan ${index + 1}">
+                            ✔
+                        </td>
+                    `;
+                        } else {
+                            cols += `
+                        <td class="bg-danger-subtle text-danger fw-bold"
+                            title="Belum bayar bulan ${index + 1}">
+                            ✖
+                        </td>
+                    `;
+                        }
+
+                    });
+
+                    rows += `<tr>${cols}</tr>`;
+                });
+
+                return rows;
+            }
+
+            function loadData() {
+
+                $('#payment-table tbody').html(`
+            <tr>
+                <td colspan="14" class="text-center text-muted">
+                    Memuat data...
+                </td>
+            </tr>
         `);
 
-        // KPI
-        $('#omzet').text('Rp ' + rupiah(data.monthly?.sales));
-        $('#growth').text('Cash Rp ' + rupiah(data.monthly?.payment));
+                $.get("{{ route('home_api') }}")
+                    .done(function(res) {
 
-        $('#total_order').text(data.receivable?.unpaid_order ?? 0);
-        $('#today_order').text(`${data.today?.order ?? 0} order hari ini`);
+                        // =====================
+                        // YEAR
+                        // =====================
+                        $('#year').text(res.year);
 
-        // PIUTANG
-        $('#piutang').text('Rp ' + rupiah(data.receivable?.total));
-        $('#piutang_count').text(
-            (data.receivable?.unpaid_order ?? 0) + ' belum lunas'
-        );
+                        // =====================
+                        // SUMMARY
+                        // =====================
+                        $('#total_resident').text(res.summary?.total_resident ?? 0);
+                        $('#payment_this_month').text('Rp ' + rupiah(res.summary?.payment_this_month));
+                        $('#paid_resident').text(res.summary?.paid_resident ?? 0);
+                        $('#unpaid_resident').text(res.summary?.unpaid_resident ?? 0);
 
-        // CASH
-        $('#payment').text('Rp ' + rupiah(data.monthly?.payment));
-        $('#payment_growth').text('Cash bulan ini');
+                        // =====================
+                        // TABLE
+                        // =====================
+                        const html = renderTable(res.data || []);
+                        $('#payment-table tbody').html(html);
 
-        // WORKFLOW
-        $('#top_product').text(data.production?.pending_order ?? 0);
-        $('#top_product_qty').text(
-            'Rp ' + rupiah(data.production?.pending_value)
-        );
+                    })
+                    .fail(function() {
 
-        // PRODUKSI
-        $('#reminder').text(data.production?.in_production ?? 0);
+                        $('#payment-table tbody').html(`
+                <tr>
+                    <td colspan="14" class="text-danger text-center">
+                        Gagal memuat data
+                    </td>
+                </tr>
+            `);
 
-        // SUMMARY
-        $('#sales_month').text('Rp ' + rupiah(data.monthly?.sales));
-        $('#cash_month').text('Rp ' + rupiah(data.monthly?.payment));
-        $('#profit_month').text('Rp ' + rupiah(data.monthly?.profit));
+                    });
+            }
 
-        $('#in_production').text(data.production?.in_production ?? 0);
-        $('#pending_order').text(data.production?.pending_order ?? 0);
-        $('#conversion_rate').text((data.production?.conversion_rate ?? 0) + '%');
+            loadData();
 
-    })
-    .fail(function(err){
-        console.error(err);
-    });
-
-});
-</script>
+        });
+    </script>
 @endsection

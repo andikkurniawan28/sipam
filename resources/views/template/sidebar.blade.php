@@ -52,14 +52,11 @@
             </a>
             <ul class="menu-sub">
 
-                {{-- BUKU BESAR (Owner) --}}
-                {{-- @if (in_array($role, ['Owner']))
-                    <li class="menu-item @yield('ledger_active')">
-                        <a href="{{ route('ledger.index') }}" class="menu-link">
-                            <div>Buku Besar</div>
-                        </a>
-                    </li>
-                @endif --}}
+                <li class="menu-item @yield('resident_payment_active')">
+                    <a href="{{ route('resident_payment.index') }}" class="menu-link">
+                        <div>Pembayaran oleh Warga</div>
+                    </a>
+                </li>
 
             </ul>
         </li>

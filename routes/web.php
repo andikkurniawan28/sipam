@@ -6,6 +6,7 @@ use App\Http\Controllers\GatewayController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ResidentController;
+use App\Http\Controllers\ResidentPaymentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -122,4 +123,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('payment/{payment}', [PaymentController::class, 'show'])
         ->name('payment.show')
         ->middleware('role:IT, PJ Air & Sampah, Admin Air & Sampah');
+
+    Route::get('resident_payment', [ResidentPaymentController::class, 'index'])
+        ->name('resident_payment.index')
+        ->middleware('role:IT, PJ Air & Sampah, Admin Air & Sampah, Ketua Paguyuban, Bendahara Paguyuban, Sekretaris Paguyuban');
+
+    Route::post('resident_payment', [ResidentPaymentController::class, 'process'])
+        ->name('resident_payment.process')
+        ->middleware('role:IT, PJ Air & Sampah, Admin Air & Sampah, Ketua Paguyuban, Bendahara Paguyuban, Sekretaris Paguyuban');
 });
