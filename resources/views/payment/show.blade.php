@@ -43,7 +43,7 @@
                         <td>{{ \Carbon\Carbon::create()->month($payment->month)->translatedFormat('F') }} {{ $payment->year }}</td>
                     </tr>
                     <tr>
-                        <th>Total Dibayar</th>
+                        <th>Total</th>
                         <td><strong>{{ number_format($payment->total,0,',','.') }}</strong></td>
                     </tr>
                     <tr>

@@ -9,6 +9,7 @@ use App\Models\Role;
 use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,21 +19,18 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         Role::insert([
-            ['name' => "Ketua Paguyuban"],
-            ['name' => "Sekretaris Paguyuban"],
-            ['name' => "Bendahara Paguyuban"],
-            ['name' => "PJ Air & Sampah"],
-            ['name' => "Admin Air & Sampah"],
+            ['name' => "Ketua"],
+            ['name' => "Sekretaris"],
+            ['name' => "Bendahara"],
             ['name' => "IT"],
         ]);
 
         User::insert([
-            ['name' => "Yahya", 'username' => 'yahya', 'password' => bcrypt('yahya_gkm3'), 'role_id' => 1],
+            ['name' => "Umam", 'username' => 'umam', 'password' => bcrypt('umam_gkm3'), 'role_id' => 1],
+            ['name' => "Firli", 'username' => 'firli', 'password' => bcrypt('firli_gkm3'), 'role_id' => 2],
             ['name' => "Raka", 'username' => 'raka', 'password' => bcrypt('raka_gkm3'), 'role_id' => 2],
-            ['name' => "Madhe", 'username' => 'madhe', 'password' => bcrypt('madhe_gkm3'), 'role_id' => 3],
-            ['name' => "Umam", 'username' => 'umam', 'password' => bcrypt('umam_gkm3'), 'role_id' => 4],
-            ['name' => "Firdaus", 'username' => 'firdaus', 'password' => bcrypt('firdaus_gkm3'), 'role_id' => 5],
-            ['name' => "Andik Kurniawan", 'username' => 'andik', 'password' => bcrypt('andik_gkm3'), 'role_id' => 6],
+            ['name' => "Firdaus", 'username' => 'firdaus', 'password' => bcrypt('firdaus_gkm3'), 'role_id' => 3],
+            ['name' => "Andik Kurniawan", 'username' => 'andik', 'password' => bcrypt('andik_gkm3'), 'role_id' => 4],
         ]);
 
         Setting::insert([
@@ -43,8 +41,21 @@ class DatabaseSeeder extends Seeder
             ['name' => "Kas", 'description' => null],
         ]);
 
-        Resident::insert([
-            ['name' => "Andik Kurniawan", 'address' => "E9", 'whatsapp' => "085733465399"],
-        ]);
+        $faker = Faker::create('id_ID');
+        $data = [];
+        foreach (range('A', 'F') as $letter) {
+            foreach (range(1, 11) as $number) {
+                $data[] = [
+                    'name' => $faker->unique()->name,
+                    'address' => $letter . $number,
+                    'whatsapp' => $faker->phoneNumber,
+                ];
+            }
+        }
+        Resident::insert($data);
+
+        // Resident::insert([
+        //     ['name' => "Andik Kurniawan", 'address' => "E9", 'whatsapp' => "085733465399"],
+        // ]);
     }
 }

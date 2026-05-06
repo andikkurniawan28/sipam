@@ -1,11 +1,11 @@
 @extends('template.master')
 
 @section('transaksi_active', 'active')
-@section('payment_active', 'active')
+@section('payment_create_active', 'active')
 
 @section('content')
     <div class="container-xxl container-p-y">
-        <h4 class="mb-4"><strong>Catat Pembayaran</strong></h4>
+        <h1 class="h3 mb-3"><strong>Catat Pembayaran</strong></h1>
 
         <div class="card">
             <div class="card-body">
@@ -23,7 +23,7 @@
                             <option value="">-- Pilih --</option>
                             @foreach ($residents as $o)
                                 <option value="{{ $o->id }}">
-                                    {{ $o->name }} - {{ $o->address }}
+                                    {{ $o->name }} {{ $o->address }}
                                 </option>
                             @endforeach
                         </select>
@@ -35,7 +35,7 @@
                             <option value="">-- Pilih --</option>
                             @foreach ($gateways as $o)
                                 <option value="{{ $o->id }}">
-                                    {{ $o->name }} - {{ $o->description }}
+                                    {{ $o->name }} {{ $o->description ?? "" }}
                                 </option>
                             @endforeach
                         </select>

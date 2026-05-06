@@ -34,7 +34,7 @@ class ApiHomeController extends Controller
         // =========================
         $year = $now->year;
 
-        $residents = Resident::select('id', 'name', 'address')->get();
+        $residents = Resident::select('id', 'name', 'address')->orderBy('address')->get();
 
         $payments = Payment::where('year', $year)
             ->get()

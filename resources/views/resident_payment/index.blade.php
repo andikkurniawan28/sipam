@@ -5,8 +5,7 @@
 
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-
-        <h4 class="mb-4"><strong>Pembayaran oleh Warga</strong></h4>
+        <h1 class="h3 mb-3"><strong>Pembayaran Warga</strong></h1>
 
         {{-- FILTER --}}
         <div class="card mb-3">
@@ -18,7 +17,7 @@
 
                     <div class="col-md-4 mb-2">
                         <label class="form-label">Warga</label>
-                        <select name="resident_id" class="form-select select2">
+                        <select name="resident_id" class="form-select select2" required>
                             <option value="">-- Pilih --</option>
                             @foreach ($residents as $resident)
                                 <option value="{{ $resident->id }}">

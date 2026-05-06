@@ -25,6 +25,10 @@ class PaymentController extends Controller
                     return $row->resident->name ?? '-';
                 })
 
+                ->addColumn('address', function ($row) {
+                    return $row->resident->address ?? '-';
+                })
+
                 ->addColumn('gateway', function ($row) {
                     return $row->gateway->name ?? '-';
                 })
@@ -52,6 +56,21 @@ class PaymentController extends Controller
                                     <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                                 </form>
                             </div>';
+                })
+                ->filterColumn('resident', function ($query, $keyword) {
+                    $query->whereHas('resident', function ($q) use ($keyword) {
+                        $q->where('name', 'like', "%{$keyword}%");
+                    });
+                })
+                ->filterColumn('resident', function ($query, $keyword) {
+                    $query->whereHas('resident', function ($q) use ($keyword) {
+                        $q->where('address', 'like', "%{$keyword}%");
+                    });
+                })
+                ->filterColumn('user', function ($query, $keyword) {
+                    $query->whereHas('user', function ($q) use ($keyword) {
+                        $q->where('name', 'like', "%{$keyword}%");
+                    });
                 })
 
                 ->rawColumns(['action'])

@@ -5,9 +5,7 @@
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
 
-        <h4 class="fw-bold mb-4">
-            Home
-        </h4>
+        <h1 class="h3 mb-3"><strong>Home</strong></h1>
 
         {{-- ===================== --}}
         {{-- SUMMARY --}}
@@ -141,7 +139,7 @@
                             cols += `
                         <td class="bg-danger-subtle text-danger fw-bold"
                             title="Belum bayar bulan ${index + 1}">
-                            ✖
+
                         </td>
                     `;
                         }

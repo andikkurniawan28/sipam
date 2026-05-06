@@ -24,6 +24,7 @@
                             <th>Periode</th>
                             <th>Timestamp</th>
                             <th>Warga</th>
+                            <th>Blok</th>
                             <th>Admin</th>
                             <th>Total</th>
                             <th>Via</th>
@@ -48,13 +49,14 @@
             processing: true,
             serverSide: true,
             ajax: "{{ route('payment.index') }}",
-            payment: [[0, 'desc']],
+            order: [[0, 'desc']],
             columns: [
                 { data: 'id', name: 'id' },
                 { data: 'code', name: 'code' },
                 { data: 'period', name: 'period' },
                 { data: 'created_at', name: 'created_at' },
                 { data: 'resident', name: 'resident' },
+                { data: 'address', name: 'address' },
                 { data: 'user', name: 'user' },
                 { data: 'total', name: 'total', render: function(data) { return formatRupiah(data); } },
                 { data: 'gateway', name: 'gateway' },
