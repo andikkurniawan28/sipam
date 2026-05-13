@@ -27,12 +27,12 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Sistem Pembayaran Air & Sampah Grand Kencana Malang 3</title>
+    <title>SiPAM</title>
 
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/fms/public/sneat/assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/sipam/public/sneat/assets/img/gk.jpg" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -73,15 +73,15 @@
           <!-- Register -->
           <div class="card">
             <div class="card-body">
-              {{-- <!-- Logo -->
+              <!-- Logo -->
               <div class="app-brand justify-content-center">
                 <a href="index.html" class="app-brand-link gap-2">
                   <span class="app-brand-logo demo">
-                    <img src="/fms/public/sneat/assets/img/fathania.png" alt="Logo"width="100">
+                    <img src="/sipam/public/sneat/assets/img/gk.jpg" alt="Logo"width="100">
                   </span>
                 </a>
               </div>
-              <!-- /Logo --> --}}
+              <!-- /Logo -->
               <h4 class="mb-2">SiPAM</h4>
               <p class="mb-4">Silahkan login terlebih dahulu</p>
 

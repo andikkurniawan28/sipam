@@ -113,7 +113,7 @@ class PaymentController extends Controller
 
         $fee = Setting::first()->fee;
 
-        Payment::create([
+        $payment = Payment::create([
             'code'        => 'PAY-' . strtoupper(Str::random(8)),
             'resident_id' => $request->resident_id,
             'gateway_id'  => $request->gateway_id,
@@ -123,7 +123,8 @@ class PaymentController extends Controller
             'total'       => $fee,
         ]);
 
-        return redirect()->route('payment.index')->with('success', 'Pembayaran berhasil dicatat.');
+        // return redirect()->route('payment.index')->with('success', 'Pembayaran berhasil dicatat.');
+        return redirect()->route('payment.show', $payment->id);
     }
 
     public function show(Payment $payment){

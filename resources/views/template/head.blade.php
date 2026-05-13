@@ -2,12 +2,12 @@
 <meta name="viewport"
     content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-<title>Sistem Pembayaran Air & Sampah Grand Kencana Malang 3</title>
+    <title>SiPAM</title>
 
 <meta name="description" content="" />
 
 <!-- Favicon -->
-<link rel="icon" type="image/x-icon" href="/fms/public/sneat/assets/img/fathania.png" />
+<link rel="icon" type="image/x-icon" href="/sipam/public/sneat/assets/img/gk.jpg" />
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
