@@ -34,7 +34,10 @@ class ApiHomeController extends Controller
         // =========================
         $year = $now->year;
 
-        $residents = Resident::select('id', 'name', 'address')->orderBy('address')->get();
+        $residents = Resident::select('id', 'name', 'address')
+            ->orderByRaw('LEFT(address, 1) ASC')
+            ->orderByRaw('CAST(SUBSTRING(address, 2) AS UNSIGNED) ASC')
+            ->get();
 
         $payments = Payment::where('year', $year)
             ->get()

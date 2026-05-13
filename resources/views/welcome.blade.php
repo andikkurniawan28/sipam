@@ -81,12 +81,12 @@
 
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h5 class="mb-0">
-                        Status Pembayaran Tahun <span id="year">-</span>
+                        Pembayaran <span id="year">-</span>
                     </h5>
                     {{-- BUTTON DOWNLOAD PDF --}}
                     <button class="btn btn-danger btn-sm" id="download-pdf">
                         <i class="bi bi-file-earmark-pdf"></i>
-                        Download PDF
+                        Download
                     </button>
                 </div>
 
@@ -94,20 +94,13 @@
                     <table class="table table-bordered table-striped table-sm text-center text-dark align-middle" id="payment-table">
                         <thead class="table-light">
                             <tr>
-                                <th class="text-start">Warga</th>
-                                <th>Blok</th>
-                                <th>Jan</th>
-                                <th>Feb</th>
-                                <th>Mar</th>
-                                <th>Apr</th>
-                                <th>Mei</th>
-                                <th>Jun</th>
-                                <th>Jul</th>
-                                <th>Agu</th>
-                                <th>Sep</th>
-                                <th>Okt</th>
-                                <th>Nov</th>
-                                <th>Des</th>
+                                <th rowspan="2">Blok</th>
+                                <th colspan="12">Bulan</th>
+                            </tr>
+                            <tr>
+                                @php for($i=1; $i<=12; $i++): @endphp
+                                <th>{{ $i }}</th>
+                                @php endfor @endphp
                             </tr>
                         </thead>
                         <tbody>
@@ -154,7 +147,6 @@
                 data.forEach(r => {
 
                     let cols = `
-                        <td class="text-start">${r.name}</td>
                         <td>${r.address ?? '-'}</td>
                     `;
 
