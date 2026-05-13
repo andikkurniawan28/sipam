@@ -4,7 +4,7 @@
 
 @section('content')
     <style>
-        #payment-table {
+        /* #payment-table {
             width: 100%;
             border-collapse: collapse;
             font-size: 10px;
@@ -14,7 +14,7 @@
         #payment-table td {
             border: 1px solid #000;
             padding: 4px;
-        }
+        } */
 
         /* Hindari row terpotong */
         #payment-table tr {
